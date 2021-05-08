@@ -24,11 +24,13 @@ for(cal of calendar)
 
 const events = await CalendarEvent.between(startDate, endDate, calendar)
 console.log(`获取 ${events.length} 条日历`)
+// console.log(events)
 
 for (const reminder of reminders) {
-  reminder.notes = (!reminder.notes || reminder.notes == null || reminder.notes == 'undefined') ? '无' : reminder.notes; 
+  reminder.notes = (!reminder.notes || reminder.notes == null || reminder.notes == 'undefined') ? '无' : reminder.notes
   //reminder的标识符
   //const targetNote = `[Reminder] ${reminder.identifier}`
+  //这里用identifier来过滤重复事件最严谨，但日历备注里不好看，所以为了显示好看一些，做了不是很严谨的修改
   const targetNote = `同步自提醒事项👇\n列表：${reminder.calendar.title}\n标题：${reminder.title}\n时间：${reminder.creationDate.toLocaleString('zh-CN', {year: 'numeric', month: '2-digit', day: '2-digit'}).replace(/\//g, '.')}`       
   const [targetEvent] = events.filter(e => e.notes != null && (e.notes.indexOf(targetNote) != -1))  //过滤重复的reminder
   
@@ -54,6 +56,7 @@ Script.complete()
 
 //设置period
 function setPeriod(event, period, option) {
+<<<<<<< HEAD
   let optionItem = (option == '已延期' || option == '还剩') ? '' : '完成';
   if(period < 3600) {
     return event.location = ((period / 60).toFixed() == 0) ? ` 准时完成` : ` ${option}${(period / 60).toFixed()}分钟${optionItem}`
@@ -62,6 +65,15 @@ function setPeriod(event, period, option) {
   }else{
       //return event.location = ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${(((period % (3600 * 24)) / 3600) % 60).toFixed()}分钟完成`
     return event.location = (((period % (3600 * 24)) / 3600).toFixed()) == 0 ? ` ${option}${(period / 3600 / 24).toFixed()}天完成` : ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${optionItem}`
+=======
+  const optionItem = (option == '延期' || option == '提前') ? '完成' : ''
+  if(period < 3600) {
+    return event.location = ((period / 60).toFixed() == 0) ? ` 准时完成` : ` ${option}${(period / 60).toFixed()}分钟${optionItem}`
+  }else if(period >= 3600 && period <= 3600 * 24){	 return event.location = (((period % 3600) / 60).toFixed() == 0) ? ` ${option}${(period / 3600).toFixed()}小时${optionItem}` : ` ${option}${(period / 3600).toFixed()}小时${((period % 3600) / 60).toFixed()}分钟${optionItem}`
+  }else{
+      //return event.location = ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${(((period % (3600 * 24)) / 3600) % 60).toFixed()}分钟${optionItem}`
+    return event.location = (((period % (3600 * 24)) / 3600).toFixed()) == 0 ? ` ${option}${(period / 3600 / 24).toFixed()}天${optionItem}` : ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${optionItem}`
+>>>>>>> 921253ee5f72416321dcc41311b79d758b86b94c
   }    
 }
 
@@ -77,11 +89,10 @@ function updateEvent(event, reminder) {
     event.title = `✅${reminder.title}`
     event.isAllDay = false
     event.startDate = reminder.completionDate
-    var ending = new Date(reminder.completionDate)
-    ending.setHours(ending.getHours() + 1)
+    var ending = new Date(reminder.completionDate)  
+    ending.setHours(ending.getHours() + 3)
     event.endDate = ending
-    
-    var period = (reminder.dueDate - reminder.completionDate) / 1000
+    var period = (reminder.dueDate-reminder.completionDate) / 1000
     period = period.toFixed()
     if(period < 0) {
       period = -period
@@ -119,7 +130,7 @@ function updateEvent(event, reminder) {
           event.isAllDay = false  
           event.startDate = reminder.dueDate
           var ending = new Date(reminder.dueDate)
-          ending.setHours(ending.getHours() + 1)
+          ending.setHours(ending.getHours() + 3)
           event.endDate = ending
         }
       }else{
@@ -128,7 +139,7 @@ function updateEvent(event, reminder) {
         setPeriod(event, period, '还剩')
         event.startDate = reminder.dueDate
         var ending = new Date(reminder.dueDate)
-        ending.setHours(ending.getHours() + 1)
+        ending.setHours(ending.getHours() + 3)
         event.endDate = ending
       }
     }
