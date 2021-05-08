@@ -54,13 +54,14 @@ Script.complete()
 
 //设置period
 function setPeriod(event, period, option) {
+  let optionItem = (option == '已延期' || option == '还剩') ? '' : '完成';
   if(period < 3600) {
-    return event.location = ((period / 60).toFixed() == 0) ? ` 准时完成` : ` ${option}${(period / 60).toFixed()}分钟完成`
+    return event.location = ((period / 60).toFixed() == 0) ? ` 准时完成` : ` ${option}${(period / 60).toFixed()}分钟${optionItem}`
   }else if(period >= 3600 && period <= 3600 * 24){
-    return event.location = (((period % 3600) / 60).toFixed() == 0) ? ` ${option}${(period / 3600).toFixed()}小时完成` : ` ${option}${(period / 3600).toFixed()}小时${((period % 3600) / 60).toFixed()}分钟完成`
+    return event.location = (((period % 3600) / 60).toFixed() == 0) ? ` ${option}${(period / 3600).toFixed()}小时完成` : ` ${option}${(period / 3600).toFixed()}小时${((period % 3600) / 60).toFixed()}分钟${optionItem}`
   }else{
       //return event.location = ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${(((period % (3600 * 24)) / 3600) % 60).toFixed()}分钟完成`
-    return event.location = (((period % (3600 * 24)) / 3600).toFixed()) == 0 ? ` ${option}${(period / 3600 / 24).toFixed()}天完成` : ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时完成`
+    return event.location = (((period % (3600 * 24)) / 3600).toFixed()) == 0 ? ` ${option}${(period / 3600 / 24).toFixed()}天完成` : ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${optionItem}`
   }    
 }
 
@@ -104,7 +105,7 @@ function updateEvent(event, reminder) {
       if(period < 0) {
         //待办顺延
         period = -period
-        setPeriod(event, period, '延期')
+        setPeriod(event, period, '已延期')
          //如果不是在同一天,设置为全天事项
         if(reminder.dueDate.getDate() != nowtime.getDate()){
            event.title = `❌${reminder.title}` 
