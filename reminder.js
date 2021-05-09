@@ -59,7 +59,8 @@ function setPeriod(event, period, option) {
   const optionItem = (option == '延期' || option == '提前') ? '完成' : ''
   if(period < 3600) {
     return event.location = ((period / 60).toFixed() == 0) ? ` 准时完成` : ` ${option}${(period / 60).toFixed()}分钟${optionItem}`
-  }else if(period >= 3600 && period <= 3600 * 24){	 return event.location = (((period % 3600) / 60).toFixed() == 0) ? ` ${option}${(period / 3600).toFixed()}小时${optionItem}` : ` ${option}${(period / 3600).toFixed()}小时${((period % 3600) / 60).toFixed()}分钟${optionItem}`
+  }else if(period >= 3600 && period <= 3600 * 24) {	 
+    return event.location = (((period % 3600) / 60).toFixed() == 0) ? ` ${option}${(period / 3600).toFixed()}小时${optionItem}` : ` ${option}${(period / 3600).toFixed()}小时${((period % 3600) / 60).toFixed()}分钟${optionItem}`
   }else{
       //return event.location = ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${(((period % (3600 * 24)) / 3600) % 60).toFixed()}分钟${optionItem}`
     return event.location = (((period % (3600 * 24)) / 3600).toFixed()) == 0 ? ` ${option}${(period / 3600 / 24).toFixed()}天${optionItem}` : ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${optionItem}`
@@ -81,7 +82,7 @@ function updateEvent(event, reminder) {
     var ending = new Date(reminder.completionDate)  
     ending.setHours(ending.getHours() + 1)
     event.endDate = ending
-    var period = (reminder.dueDate-reminder.completionDate) / 1000
+    var period = (reminder.dueDate - reminder.completionDate) / 1000
     period = period.toFixed()
     if(period < 0) {
       period = -period
@@ -89,7 +90,7 @@ function updateEvent(event, reminder) {
     }
     else if (period == 0)
     {
-      event.location = " 准时完成"
+      event.location = ' 准时完成'
     }
     else
     {
