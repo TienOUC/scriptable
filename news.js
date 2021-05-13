@@ -29,7 +29,7 @@ Script.setWidget(widget);
 //获取news json
 async function getNewsContent() {
   const url = 'https://zhibo.sina.com.cn/api/zhibo/feed?page=1&page_size=100&zhibo_id=152&tag_id=0&dire=f&dpc=1&type=0';
-  const request = new Request(url, (timeoutInterval = 3600));
+  const request = new Request(url, (timeoutInterval = 120));
   const res = await request.loadJSON();
   const listArr = res.result.data.feed.list;
   //用关键词过滤掉与财经无关的新闻
