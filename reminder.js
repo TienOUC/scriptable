@@ -60,7 +60,7 @@ function setPeriod(event, period, option) {
   if(period < 3600) {
     return event.location = ((period / 60).toFixed() == 0) ? ` 准时完成` : ` ${option}${(period / 60).toFixed()}分钟${optionItem}`
   }else if(period >= 3600 && period <= 3600 * 24) {	 
-    return event.location = (((period % 3600) / 60).toFixed() == 0) ? ` ${option}${(period / 3600).toFixed()}小时${optionItem}` : ` ${option}${(period / 3600).toFixed()}小时${((period % 3600) / 60).toFixed()}分钟${optionItem}`
+    return event.location = (((period % 3600) / 60).toFixed() == 0) ? `${option}${(period / 3600).toFixed()}小时${optionItem}` : `${option}${Math.floor((period / 3600).toFixed(2))}小时${((period % 3600) / 60).toFixed()}分钟${optionItem}`
   }else{
       //return event.location = ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${(((period % (3600 * 24)) / 3600) % 60).toFixed()}分钟${optionItem}`
     return event.location = (((period % (3600 * 24)) / 3600).toFixed()) == 0 ? ` ${option}${(period / 3600 / 24).toFixed()}天${optionItem}` : ` ${option}${(period / 3600 / 24).toFixed()}天${((period % (3600 * 24)) / 3600).toFixed()}小时${optionItem}`
