@@ -13,11 +13,11 @@ synchronize reminders to calendar
 
 ![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021412465.png)
 
-![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021415826.png)
+<!-- ![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021415826.png) -->
 
 ![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021415375.png)
 
-![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021415752.png)
+<!-- ![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021415752.png) -->
 
 ### 3. random-pic.js
 
