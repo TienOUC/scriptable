@@ -7,8 +7,9 @@ synchronize reminders to calendar
 
 ### 2. financial-news-new.js
 
-![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110031507708.png)!
-[](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110031507486.png)
+![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110031507708.png)
+
+![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110031507486.png)
 
 ![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021412465.png)
 
@@ -20,7 +21,8 @@ synchronize reminders to calendar
 
 ### 3. random-pic.js
 
-![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021522918.png)!
-[](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021522942.png)
+![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021522918.png)
+
+![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021522942.png)
 
 ![](https://cdn.jsdelivr.net/gh/tienouc/blog-img/202110021628018.png)
